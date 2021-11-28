@@ -24,7 +24,7 @@ public class KioskOrderFrame extends JPanel {
 		setLayout(new GridLayout());
 		
 		//orderTable 설정
-		String header[]={"주문 상품","가격","금액"};
+		String header[]={"주문 상품","가격","수량"};
 		tm = new DefaultTableModel(header,0); //테이블 모델 생성
 		
 		orderTable = new JTable(tm);//모델로 테이블 객체 생성
