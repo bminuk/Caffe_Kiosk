@@ -1,4 +1,4 @@
-package project;
+package project.Kiosk;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,7 +7,8 @@ import javax.swing.JPanel;
 public class KioskMainPage extends JFrame{
 	
 	JLabel title= new JLabel("Coffee");//아마 이미지 만들어서 넣는게 더 편할 듯 (추후 이 주석 삭제할 것)
-	
+	static KioskMenuFrame kmf;
+	static KioskOrderFrame kof;
 	public KioskMainPage() {
 		//기본 Frame 설정
 		setTitle("Caffe Kiosk");
@@ -25,11 +26,11 @@ public class KioskMainPage extends JFrame{
 		add(title);
 		
 		//menu panel
-		KioskMenuFrame kmf = new KioskMenuFrame();
+		kmf = new KioskMenuFrame();
 		add(kmf);
 		
 		//order panel
-		KioskOrderFrame kof = new KioskOrderFrame();
+		kof = new KioskOrderFrame();
 		add(kof);
 		
 		//
