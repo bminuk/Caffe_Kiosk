@@ -1,6 +1,8 @@
 package project.Kiosk;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
@@ -18,10 +20,11 @@ public class KioskOrderFrame extends JPanel {
 	
 	public KioskOrderFrame() {
 		//패널 설정
-		setSize(500, 200);
-		setLocation(50, 410);
+		//setSize(500, 150);
+		setLocation(50, 610);
 		setBackground(Color.white);
-		setLayout(new GridLayout());
+		setLayout(new BorderLayout());
+		setSize(400, 150);
 		
 		//orderTable 설정
 		String header[]={"주문 상품","가격","수량"};
@@ -31,7 +34,7 @@ public class KioskOrderFrame extends JPanel {
 		
 		jp = new JScrollPane(orderTable); //스크롤팬에 테이블 넣기
 		
-		add(jp);//팬에 스크롤팬 추가
+		add(jp,BorderLayout.CENTER);//팬에 스크롤팬 추가
 		
 		
 		
