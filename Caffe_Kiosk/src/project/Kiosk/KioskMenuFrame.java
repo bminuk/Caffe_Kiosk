@@ -22,24 +22,24 @@ public class KioskMenuFrame extends JPanel implements ActionListener{
 		
 		menuJb1 = new JButton(new ImageIcon("images//ame.png"));
 		
+		//	new ImageIcon("images//moca1.png")
 		
 		
-		
-		menuJb2 = new JButton("카페라떼");
-		menuJb3 = new JButton("카푸치노");
-		menuJb4 = new JButton("카페모카");
-		menuJb5 = new JButton("콜드브루");
-		menuJb6 = new JButton("아인슈패너");
-		menuJb7 = new JButton("연유라떼");
-		menuJb8 = new JButton("바닐라라떼");
-		menuJb9 = new JButton("카페모카");
-		menuJb10 = new JButton("카페모카");
-		menuJb11 = new JButton("카페모카");
-		menuJb12 = new JButton("카페모카");
-		menuJb13 = new JButton("카페모카");
-		menuJb14 = new JButton("카페모카");
-		menuJb15 = new JButton("카페모카");
-		menuJb16 = new JButton("카페모카");
+		menuJb2 = new JButton(new ImageIcon("images//ame2.png"));
+		menuJb3 = new JButton(new ImageIcon("images//ratte1.png"));
+		menuJb4 = new JButton(new ImageIcon("images//ratte2.png"));
+		menuJb5 = new JButton(new ImageIcon("images//moca1.png"));
+		menuJb6 = new JButton(new ImageIcon("images//moca2.png"));
+		menuJb7 = new JButton(new ImageIcon("images//cmratte1.png"));
+		menuJb8 = new JButton(new ImageIcon("images//cmratte2.png"));
+		menuJb9 = new JButton(new ImageIcon("images//insu.png"));
+		menuJb10 = new JButton(new ImageIcon("images//cold.png"));
+		menuJb11 = new JButton(new ImageIcon("images//banil1.png"));
+		menuJb12 = new JButton(new ImageIcon("images//banil2.png"));
+		menuJb13 = new JButton(new ImageIcon("images//jamong.png"));
+		menuJb14 = new JButton(new ImageIcon("images//remon.png"));
+		menuJb15 = new JButton(new ImageIcon("images//blue.png"));
+		menuJb16 = new JButton(new ImageIcon("images//icetea.png"));
 		
 		
 		add(menuJb1);
