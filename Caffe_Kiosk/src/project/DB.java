@@ -16,7 +16,7 @@ public class DB {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "min", "156");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@paranUk.iptime.org:1521:XE", "min", "156");
 			stmt = conn.createStatement();
 
 			
