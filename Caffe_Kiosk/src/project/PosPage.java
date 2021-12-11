@@ -35,7 +35,7 @@ public class PosPage extends JFrame implements ActionListener {
 	JButton mark;
 	JTable saleList;
 	JTextField menuTf;
-	public JButton[] menuBtn = new JButton[25];
+	public JButton[] menuBtn = new JButton[16];
 	public JButton[] payBtn = new JButton[8];
 	private ResultSet rs;
 	int many;
@@ -146,24 +146,11 @@ public class PosPage extends JFrame implements ActionListener {
 		JPanel rightJp_center = new JPanel();
 		JPanel rcf = new JPanel();
 		rcf.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
-		rightJp_center.setLayout(new GridLayout(5, 5, 10, 10));
+		rightJp_center.setLayout(new GridLayout(4, 4, 10, 10));
 		rightJp_center.setPreferredSize(new Dimension(600, 450));
 
-		for (int i = 0; i < 25; i++) {
-			rs = DB.getRs("select menuname from mint.menu where btnnum = " + i);
-			try {
-				rs.next();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			try {
-				menuBtn[i] = new JButton(rs.getString("menuname"));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			menuBtn[i].setFont(new Font("돋움", Font.BOLD, 11));
+		for (int i = 0; i < 16; i++) {//메뉴 버튼 0~15까지 생성
+			menuBtn[i] = new JButton(new ImageIcon("images//menuImage//menu"+i+".png"));
 			menuBtn[i].addActionListener(this);
 			rightJp_center.add(menuBtn[i]);
 
@@ -214,86 +201,203 @@ public class PosPage extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		new PosPage();
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		
 		if (obj == menuBtn[0]) {
-			btnNum = 0;
-			btnSkill();
+			Object[] r = {"아메리카노 (ICE)","1","2000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 2000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[1]) {
-			btnNum = 1;
-			btnSkill();
+			Object[] r = {"아메리카노 (HOT)","1","2000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 2000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[2]) {
-			btnNum = 2;
-			btnSkill();
+			Object[] r = {"카페라떼 (ICE)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[3]) {
-			btnNum = 3;
-			btnSkill();
+			Object[] r = {"카페라떼 (HOT)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[4]) {
-			btnNum = 4;
-			btnSkill();
+			Object[] r = {"카페모카 (ICE)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[5]) {
-			btnNum = 5;
-			btnSkill();
+			Object[] r = {"카페모카 (HOT)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[6]) {
-			btnNum = 6;
-			btnSkill();
+			Object[] r = {"연유라떼 (ICE)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[7]) {
-			btnNum = 7;
-			btnSkill();
+			Object[] r = {"연유라떼 (HOT)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[8]) {
-			btnNum = 8;
-			btnSkill();
+			Object[] r = {"아인슈패너 (ICE)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[9]) {
-			btnNum = 9;
-			btnSkill();
+			Object[] r = {"콜드브루 (ICE)","1","2500"};
+			model.addRow(r);
+			sumPrice = sumPrice + 2500;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[10]) {
-			btnNum = 10;
-			btnSkill();
+			Object[] r = {"바닐라 라떼(ICE)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[11]) {
-			btnNum = 11;
-			btnSkill();
+			Object[] r = {"바닐라 라떼(HOT)","1","3000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 3000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[12]) {
-			btnNum = 12;
-			btnSkill();
+			Object[] r = {"자몽에이드 (ICE)","1","2500"};
+			model.addRow(r);
+			sumPrice = sumPrice + 2500;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[13]) {
-			btnNum = 13;
-			btnSkill();
+			Object[] r = {"레몬에이드 (ICE)","1","2500"};
+			model.addRow(r);
+			sumPrice = sumPrice + 2500;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[14]) {
-			btnNum = 14;
-			btnSkill();
+			Object[] r = {"블루 레몬에이드 (ICE)","1","2800"};
+			model.addRow(r);
+			sumPrice = sumPrice + 2800;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[15]) {
-			btnNum = 15;
-			btnSkill();
-		} else if (obj == menuBtn[16]) {
-			btnNum = 16;
-			btnSkill();
-		} else if (obj == menuBtn[17]) {
-			btnNum = 17;
-			btnSkill();
-		} else if (obj == menuBtn[18]) {
-			btnNum = 18;
-			btnSkill();
-		} else if (obj == menuBtn[19]) {
-			btnNum = 19;
-			btnSkill();
-		} else if (obj == menuBtn[20]) {
-			btnNum = 20;
-			btnSkill();
-		} else if (obj == menuBtn[21]) {
-			btnNum = 21;
-			btnSkill();
-		} else if (obj == menuBtn[22]) {
-			btnNum = 22;
-			btnSkill();
-		} else if (obj == menuBtn[23]) {
-			btnNum = 23;
-			btnSkill();
-		} else if (obj == menuBtn[24]) {
-			btnNum = 24;
-			btnSkill();
+			Object[] r = {"아이스티 (ICE)","1","2000"};
+			model.addRow(r);
+			sumPrice = sumPrice + 2000;
+			many++;
+			lbl6.setText(many + "개");
+			lbl7.setText(sumPrice + "원");
+			lbl8.setText(discount + "원");
+			finalPrice = sumPrice - discount;
+			lbl9.setText(finalPrice + "원");
+			point = (int) (finalPrice * 0.05);
+			lbl10.setText(point + "point");
 		} else if (obj == payBtn[0]) {
 
 			model.setNumRows(0);
@@ -309,9 +413,8 @@ public class PosPage extends JFrame implements ActionListener {
 		} else if (obj == payBtn[1]) {
 
 			int n = saleList.getSelectedRow();
-			int c = saleList.getSelectedColumn();
 			if (n >= 0) {
-				sumPrice = sumPrice - Integer.parseInt(saleList.getValueAt(n, c).toString());
+				sumPrice = sumPrice - Integer.parseInt(saleList.getValueAt(n, 2).toString());
 				many--;
 				model.removeRow(n);
 				lbl7.setText(sumPrice + "원");

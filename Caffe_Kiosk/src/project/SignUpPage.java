@@ -258,7 +258,7 @@ public class SignUpPage extends JFrame implements ActionListener {
 			
 			else {
 			
-			DB.executeQuery( "INSERT INTO MINT.MANAGER " + "VALUES"
+			DB.executeQuery( "INSERT INTO MANAGER " + "VALUES"
 					+ "('" + managerID + "', '" + managerPassword + "', '" + managerName + "', '" + 
 					managerPhone + "', '" + BusinessNumber + "', '" + managerBirthday + "')");
 			
@@ -274,7 +274,7 @@ public class SignUpPage extends JFrame implements ActionListener {
 
 	private boolean checkBN(String businessNumber) {
 		boolean check2 = false;
-		String sql = "select id from manager where businessnumber = '" + businessNumber +"'";
+		String sql = "select id from manager where businessnum = '" + businessNumber +"'";
 		ResultSet rs = DB.getRs(sql);
 		try {
 			if(rs.next()) {
