@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -58,6 +59,7 @@ public class OrderCheck extends JFrame implements MouseListener, ActionListener 
 	public OrderCheck(){
 		setLayout(new BorderLayout());
 		setSize(300, 500);
+		setResizable(false);
 		setTitle("주문내역 확인");
 		setLocationRelativeTo(this);
 		setVisible(true);
@@ -66,7 +68,7 @@ public class OrderCheck extends JFrame implements MouseListener, ActionListener 
 		
 		//클라이언트
 				client = new Client2();
-				client.startClient("192.168.0.5", 1234);
+				client.startClient("127.0.0.1", 1234);
 				client.receive();
 		
 		JPanel jpNorth = new JPanel();//제목 부분
@@ -109,7 +111,10 @@ public class OrderCheck extends JFrame implements MouseListener, ActionListener 
 	}
 	
 	public static void main(String[] args) {
-		new OrderCheck();
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("메뉴");
+		OrderVO ov = new OrderVO(1, list, "매장");
+		new OrderCheckDetail(ov);
 		
 
 	}
@@ -165,30 +170,38 @@ public class OrderCheck extends JFrame implements MouseListener, ActionListener 
 
 class OrderCheckDetail extends JFrame{//리스트를 클릭하면 생성되는 메뉴 자세한 페이지
 	public OrderCheckDetail(OrderVO ov) {
-		setLayout(new FlowLayout());
+		setLayout(new BorderLayout());
 		setSize(300, 300);
+		setTitle("주문 내역 확인");
+		setResizable(false);
 		
 		setLocationRelativeTo(this);
 		
 		JPanel jp = new JPanel();
-		jp.setLayout(new FlowLayout());
+		jp.setLayout(new BorderLayout());
+		jp.setSize(300, 500);
+		jp.setBackground(Color.white);
+		
+		
 		
 		JTextArea jta = new JTextArea();
+		jta.setEditable(false);
+		jta.setFont(new Font("돋움", Font.BOLD, 15));
 		jta.setLineWrap(true);
-		jta.setSize(200, 200);
-		jta.append("주문 번호 : "+ov.getOrderNum()+"\n");
-		jta.append(ov.getWhereUse()+" 주문\n");
-		jta.append("주문 메뉴 목록\n");
+		jta.setSize(280, 500);
+		jta.append("주문 번호 : "+ov.getOrderNum()+"\n\n");
+		jta.append(ov.getWhereUse()+" 주문\n\n");
+		jta.append("주문 메뉴 목록 : \n");
 		ArrayList<String> orderList = ov.getOrderList();
 		for(int i=0;i<orderList.size();i++) {
 		jta.append(orderList.get(i)+"\n");
 		}
 		
+		JScrollPane jp2 = new JScrollPane(jta);
 		
+		jp.add(jp2,BorderLayout.CENTER);
 		
-		jp.add(jta);
-		
-		add(jp);
+		add(jp,BorderLayout.CENTER);
 		
 		setVisible(true);
 

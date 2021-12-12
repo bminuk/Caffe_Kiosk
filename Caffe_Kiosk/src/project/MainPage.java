@@ -81,7 +81,7 @@ public class MainPage extends JFrame implements MouseListener {
 		}else if(obj == sale) {
 			new SalesPrice();
 		}else if(obj == exit) {
-			new PosPageUpdate();
+			System.exit(0);
 		}
 	}
 

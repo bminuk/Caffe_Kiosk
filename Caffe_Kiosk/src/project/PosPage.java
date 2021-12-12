@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import jdk.jshell.Diag;
+import project.Kiosk.KioskMainPage;
 import project.socket.MyServer;
 
 public class PosPage extends JFrame implements ActionListener {
@@ -172,7 +173,7 @@ public class PosPage extends JFrame implements ActionListener {
 		payBtn[3].setFont(new Font("돋움", Font.BOLD, 15));
 		payBtn[4] = new JButton("주문서 확인");
 		payBtn[4].setFont(new Font("돋움", Font.BOLD, 13));
-		payBtn[5] = new JButton("포인트 사용");
+		payBtn[5] = new JButton("키오스크");
 		payBtn[5].setFont(new Font("돋움", Font.BOLD, 13));
 		payBtn[6] = new JButton("회원 등록");
 		payBtn[6].setFont(new Font("돋움", Font.BOLD, 15));
@@ -194,7 +195,7 @@ public class PosPage extends JFrame implements ActionListener {
 		
 		//서버 구동
 		server = new MyServer();
-		server.startSever("192.168.0.5", 1234);
+		server.startSever("127.0.0.1", 1234);
 		
 		
 
@@ -403,25 +404,13 @@ public class PosPage extends JFrame implements ActionListener {
 			
 		} else if (obj == payBtn[5]) {//포인트 사용 버튼
 			
-			pu = new PointUse();
-			pu.use.addActionListener(this);
+			new KioskMainPage();
 				
 			}else if (obj == payBtn[6]) {//멤버 회원 가입 버튼
 			new MemberSignIn();
 		} else if (obj == payBtn[7]) {
 			new SalesPrice();
-		}  else if (obj == pu.use) {
-			
-			discount = pu.getPoint();
-			lbl8.setText(Integer.toString(discount));
-			finalPrice = sumPrice - discount;
-			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			
-		}  else if (obj==puu.use) {
-			
-			//DB.executeQuery("update mint.member set point="+point+" where phone ='"+phone+"'");
-		}
+		} 
 
 	}
 

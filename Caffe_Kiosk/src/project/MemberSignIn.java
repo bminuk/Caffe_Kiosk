@@ -82,9 +82,12 @@ public class MemberSignIn extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "이름과 전화번호를 모두 입력해주세요");
 			}else {
 				if (isInteger(phone)) {
-					rs = DB.getRs("select name from mint.member where phone = '" + phone + "'");
+					
+					rs = DB.getRs("select name from \"member\" where phone = " + phone + "");
+					
 
 					try {
+						
 						rs.next();
 						String n = rs.getString(1).toString();
 						JOptionPane.showMessageDialog(null, "이미 등록되어 있는 번호입니다.");
@@ -92,10 +95,10 @@ public class MemberSignIn extends JFrame implements ActionListener {
 						phoneTf.setText("");
 					} catch (SQLException e1) {
 						System.out.println("등록되지 않은 번호");
-						 DB.executeQuery("insert into mint.member(name, phone) values('"+name+"','"+phone+"')");
+						 DB.executeQuery("insert into \"member\"(name, phone) values('"+name+"',"+phone+")");
 						 JOptionPane.showMessageDialog(null, "회원등록이 완료되었습니다.");
 					}
-					// DB.executeQuery("insert into mint.member(name, phone) values('','')");
+					
 			}else {
 				JOptionPane.showMessageDialog(null, "전화번호는 숫자로만 입력하세요");
 			}

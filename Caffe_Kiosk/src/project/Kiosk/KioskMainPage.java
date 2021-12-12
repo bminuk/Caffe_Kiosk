@@ -35,6 +35,7 @@ public class KioskMainPage extends JFrame implements ActionListener{
 		setTitle("Caffe Kiosk");
 		setLayout(null);
 		setSize(515, 950);
+		setResizable(false);
 		setLocationRelativeTo(this);
 		//setLocation(1100,100);
 		
@@ -70,13 +71,14 @@ public class KioskMainPage extends JFrame implements ActionListener{
 		takeOutBtn.addActionListener(this);
 		useStoreBtn.setSize(100, 70);
 		useStoreBtn.setLocation(260, 820);
+		useStoreBtn.addActionListener(this);
 		add(takeOutBtn);
 		add(useStoreBtn);
 		
 		//클라이언트
 		
 		client = new Client();
-		client.startClient("192.168.0.5", 1234);
+		client.startClient("127.0.0.1", 1234);
 		
 		
 		
@@ -84,7 +86,6 @@ public class KioskMainPage extends JFrame implements ActionListener{
 		
 		
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	}
 	
@@ -112,6 +113,7 @@ public class KioskMainPage extends JFrame implements ActionListener{
 			client.send(ov);
 			orderNumCount++;
 			price.setText("0원");
+			priceSum=0;
 			KioskOrderFrame.tm.setNumRows(0);
 			}
 			
@@ -129,6 +131,7 @@ public class KioskMainPage extends JFrame implements ActionListener{
 			client.send(ov);
 			orderNumCount++;
 			price.setText("0원");
+			priceSum=0;
 			KioskOrderFrame.tm.setNumRows(0);
 			}
 			
