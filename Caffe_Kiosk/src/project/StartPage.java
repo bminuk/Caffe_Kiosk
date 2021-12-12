@@ -35,6 +35,7 @@ public class StartPage extends JFrame implements ActionListener  {
 	private JButton idsbtn;
 	private JButton pwsbtn;
 	private JButton joinbtn;
+	public static String idSave;
 
 	public StartPage() {
 		
@@ -143,6 +144,7 @@ public class StartPage extends JFrame implements ActionListener  {
 			boolean check = checkIDPW(id, pw);
 			if(check) {
 				JOptionPane.showMessageDialog(null, "접속해 주셔서 감사합니다.");
+				idSave = id;
 				System.out.println("로그인 성공");
 				new MainPage();
 			} else {

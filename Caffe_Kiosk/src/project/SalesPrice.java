@@ -177,16 +177,17 @@ public class SalesPrice extends JFrame implements ActionListener {
 			secondDate = cb4.getSelectedItem().toString()+cb5.getSelectedItem().toString()+cb6.getSelectedItem().toString();
 			
 			
-			
-			rs=DB.getRs("SELECT * FROM MINT.SALES WHERE \"DATE\" between TO_date('"+firstDate+"','yyyymmdd')+1 and to_date("+secondDate+")+1");
+			System.out.println(firstDate);
+			System.out.println(secondDate);
+			rs=DB.getRs("SELECT * FROM SALES WHERE \"date\" between TO_date('"+firstDate+"','yyyymmdd') and to_date('"+secondDate+"','yyyymmdd')");
 			
 			try {
 				
 				
 				while(rs.next()) {
-					data = new Object[]{rs.getDate(1),rs.getInt(2)};
+					data = new Object[]{rs.getDate("date"),rs.getInt("price")};
 					dm.addRow(data);
-					sumSalePrice = sumSalePrice + rs.getInt(2);
+					sumSalePrice = sumSalePrice + rs.getInt(3);
 				}
 				sumSales.setText(sumSalePrice+"");
 				

@@ -18,8 +18,8 @@ import javax.swing.table.DefaultTableModel;
 public class KioskOrderFrame extends JPanel implements MouseListener {
 	
 	public JScrollPane jp;
-	public JTable orderTable;
-	DefaultTableModel tm;
+	public static JTable orderTable;
+	public static DefaultTableModel tm;
 	
 	public KioskOrderFrame() {
 		//패널 설정

@@ -8,16 +8,21 @@ import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server {
+public class MyServer {
 	public static ExecutorService threadPool;
-	public static Vector<Client> clients = new Vector<Client>();
+	public static Vector<ServerClient> clients = new Vector<ServerClient>();
 	
 	ServerSocket serverSocket;
+	public static void main(String[] args) {
+		
+		
+	}
 	
 	public void startSever(String IP,int port) {
 		try {
 			serverSocket = new ServerSocket();
 			serverSocket.bind(new InetSocketAddress(IP, port));
+			System.out.println("서버 열림");
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -33,7 +38,7 @@ public class Server {
 				while(true) {
 					try {
 						Socket socket = serverSocket.accept();
-						clients.add(new Client(socket));
+						clients.add(new ServerClient(socket));
 						System.out.println("클라이언트 접속"+
 						socket.getRemoteSocketAddress() +":"+Thread.currentThread().getName());
 					}catch (Exception e) {
@@ -51,9 +56,9 @@ public class Server {
 
 	public void stopServer() {
 		try {
-			Iterator<Client> iterator = clients.iterator();
+			Iterator<ServerClient> iterator = clients.iterator();
 			while(iterator.hasNext()) {
-				Client client = iterator.next();
+				ServerClient client = iterator.next();
 				client.socket.close();
 				iterator.remove();
 			}

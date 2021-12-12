@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import jdk.jshell.Diag;
+import project.socket.MyServer;
 
 public class PosPage extends JFrame implements ActionListener {
 
@@ -49,11 +50,12 @@ public class PosPage extends JFrame implements ActionListener {
 	int finalPrice = 0;
 	int point = 0;
 	int puPoint;
-	String phone;
 	int year, month, day;
 	PointUse pu;
 	PointUse puu;
 	private ImageIcon logoicon;
+	
+	static MyServer server;
 	
 
 	public PosPage(int d) {
@@ -116,11 +118,11 @@ public class PosPage extends JFrame implements ActionListener {
 		lbl2.setFont(new Font("돋움", Font.BOLD, 16));
 		lbl4 = new JLabel("총금액 : ", JLabel.CENTER);
 		lbl4.setFont(new Font("돋움", Font.BOLD, 16));
-		lbl6 = new JLabel("0000000000");
+		lbl6 = new JLabel("0원");
 		lbl6.setFont(new Font("돋움", Font.BOLD, 16));
-		lbl7 = new JLabel("0000000000");
+		lbl7 = new JLabel("0원");
 		lbl7.setFont(new Font("돋움", Font.BOLD, 16));
-		lbl9 = new JLabel("0000000000");
+		lbl9 = new JLabel("0원");
 		lbl9.setFont(new Font("돋움", Font.BOLD, 16));
 		leftJp_south.add(lbl1);
 		leftJp_south.add(lbl6);
@@ -168,7 +170,7 @@ public class PosPage extends JFrame implements ActionListener {
 		payBtn[2].setFont(new Font("돋움", Font.BOLD, 15));
 		payBtn[3] = new JButton("결제");
 		payBtn[3].setFont(new Font("돋움", Font.BOLD, 15));
-		payBtn[4] = new JButton("포인트 조회");
+		payBtn[4] = new JButton("주문서 확인");
 		payBtn[4].setFont(new Font("돋움", Font.BOLD, 13));
 		payBtn[5] = new JButton("포인트 사용");
 		payBtn[5].setFont(new Font("돋움", Font.BOLD, 13));
@@ -189,6 +191,12 @@ public class PosPage extends JFrame implements ActionListener {
 		add(leftJp, BorderLayout.WEST);
 		add(rightJp, BorderLayout.EAST);
 		setVisible(true);
+		
+		//서버 구동
+		server = new MyServer();
+		server.startSever("192.168.0.5", 1234);
+		
+		
 
 	}
 
@@ -367,7 +375,7 @@ public class PosPage extends JFrame implements ActionListener {
 				lbl6.setText(many + "개");
 				finalPrice = sumPrice - discount;
 				lbl9.setText(finalPrice + "원");
-				point = (int) (finalPrice * 0.05);
+				
 			}
 
 		} else if (obj == payBtn[2]) {//포스 종료 버튼
@@ -377,25 +385,21 @@ public class PosPage extends JFrame implements ActionListener {
 				
 					
 						JOptionPane.showMessageDialog(null, "결제가 완료되었습니다.");
-						DB.executeQuery("update mint.member set point=0 where phone ='"+phone+"'");
 						model.setNumRows(0);
 						many = 0;
 						lbl7.setText(sumPrice + "원");
 						lbl6.setText("0개");
-						finalPrice = sumPrice - discount;
 						lbl9.setText(finalPrice + "원");
-
-						//DB.executeQuery("insert into mint.sales values (sysdate," + finalPrice + ")");
-						int answer = JOptionPane.showConfirmDialog(null, "포인트를 적립하시겠습니까?","포인트 적립",JOptionPane.YES_NO_OPTION);
-						if(answer==JOptionPane.YES_OPTION) {
-						puu = new PointUse();
-						puu.use.addActionListener(this);
-						}
+						DB.executeQuery("insert into sales values ('"+StartPage.idSave+"',sysdate," + finalPrice + ")");
+						finalPrice = 0;
+						lbl9.setText("0원");
+						lbl7.setText("0원");
 					
 			
 			}
 
-		} else if (obj == payBtn[4]) {//포인트 검색 버튼 ->바꿀껀데 새로운 창이 떠야해
+		} else if (obj == payBtn[4]) {//주문서 확인 창
+			new OrderCheck();
 			
 		} else if (obj == payBtn[5]) {//포인트 사용 버튼
 			
@@ -413,10 +417,10 @@ public class PosPage extends JFrame implements ActionListener {
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
 			point = (int) (finalPrice * 0.05);
-			phone = pu.getPhone();
+			
 		}  else if (obj==puu.use) {
-			phone = puu.getPhone();
-			DB.executeQuery("update mint.member set point="+point+" where phone ='"+phone+"'");
+			
+			//DB.executeQuery("update mint.member set point="+point+" where phone ='"+phone+"'");
 		}
 
 	}
