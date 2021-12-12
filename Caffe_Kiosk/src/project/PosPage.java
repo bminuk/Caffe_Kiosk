@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -44,7 +45,6 @@ public class PosPage extends JFrame implements ActionListener {
 	JLabel lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9, lbl10;
 	int sumPrice = 0;
 	public int discount = 0;
-	PointSearch ps;
 
 	int finalPrice = 0;
 	int point = 0;
@@ -54,12 +54,16 @@ public class PosPage extends JFrame implements ActionListener {
 	PointUse pu;
 	PointUse puu;
 	private ImageIcon logoicon;
+	
 
 	public PosPage(int d) {
 		this.discount = d;
 	}
-
+	
 	public PosPage() {
+		
+		
+		
 		DB.init();
 		// 프레임 설정
 		setTitle("pos");
@@ -67,6 +71,7 @@ public class PosPage extends JFrame implements ActionListener {
 		setLocationRelativeTo(this);
 		setResizable(false);
 		setLayout(new BorderLayout());
+		
 
 		// 왼쪽 Jp
 		JPanel leftJp = new JPanel();
@@ -100,7 +105,8 @@ public class PosPage extends JFrame implements ActionListener {
 
 		// 왼쪽 JP_south
 		JPanel leftJp_south = new JPanel();
-		leftJp_south.setLayout(new GridLayout(5, 2));
+		leftJp_south.setLayout(new GridLayout(3, 2));
+		
 
 		leftJp_south.setPreferredSize(new Dimension(500, 250));
 		leftJp_south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 20));
@@ -108,32 +114,20 @@ public class PosPage extends JFrame implements ActionListener {
 		lbl1.setFont(new Font("돋움", Font.BOLD, 16));
 		lbl2 = new JLabel("합계 금액 : ", JLabel.CENTER);
 		lbl2.setFont(new Font("돋움", Font.BOLD, 16));
-		lbl3 = new JLabel("할인 금액 : ", JLabel.CENTER);
-		lbl3.setFont(new Font("돋움", Font.BOLD, 16));
 		lbl4 = new JLabel("총금액 : ", JLabel.CENTER);
 		lbl4.setFont(new Font("돋움", Font.BOLD, 16));
-		lbl5 = new JLabel("적립금액 : ", JLabel.CENTER);
-		lbl5.setFont(new Font("돋움", Font.BOLD, 16));
 		lbl6 = new JLabel("0000000000");
 		lbl6.setFont(new Font("돋움", Font.BOLD, 16));
 		lbl7 = new JLabel("0000000000");
 		lbl7.setFont(new Font("돋움", Font.BOLD, 16));
-		lbl8 = new JLabel("0000000000");
-		lbl8.setFont(new Font("돋움", Font.BOLD, 16));
 		lbl9 = new JLabel("0000000000");
 		lbl9.setFont(new Font("돋움", Font.BOLD, 16));
-		lbl10 = new JLabel("0000000000");
-		lbl10.setFont(new Font("돋움", Font.BOLD, 16));
 		leftJp_south.add(lbl1);
 		leftJp_south.add(lbl6);
 		leftJp_south.add(lbl2);
 		leftJp_south.add(lbl7);
-		leftJp_south.add(lbl3);
-		leftJp_south.add(lbl8);
 		leftJp_south.add(lbl4);
 		leftJp_south.add(lbl9);
-		leftJp_south.add(lbl5);
-		leftJp_south.add(lbl10);
 		leftJp.add(leftJp_south, BorderLayout.SOUTH);
 
 		// leftJp_south.setPreferredSize(new Dimension(400,100));
@@ -190,10 +184,10 @@ public class PosPage extends JFrame implements ActionListener {
 		rightJp.add(rsf, BorderLayout.SOUTH);
 
 		// 전체 구성
-
+		
+		
 		add(leftJp, BorderLayout.WEST);
 		add(rightJp, BorderLayout.EAST);
-
 		setVisible(true);
 
 	}
@@ -201,6 +195,7 @@ public class PosPage extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		new PosPage();
 	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -213,11 +208,9 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
+			
 		} else if (obj == menuBtn[1]) {
 			Object[] r = {"아메리카노 (HOT)","1","2000"};
 			model.addRow(r);
@@ -225,11 +218,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[2]) {
 			Object[] r = {"카페라떼 (ICE)","1","3000"};
 			model.addRow(r);
@@ -237,11 +227,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[3]) {
 			Object[] r = {"카페라떼 (HOT)","1","3000"};
 			model.addRow(r);
@@ -249,11 +236,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[4]) {
 			Object[] r = {"카페모카 (ICE)","1","3000"};
 			model.addRow(r);
@@ -261,11 +245,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[5]) {
 			Object[] r = {"카페모카 (HOT)","1","3000"};
 			model.addRow(r);
@@ -273,11 +254,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[6]) {
 			Object[] r = {"연유라떼 (ICE)","1","3000"};
 			model.addRow(r);
@@ -285,11 +263,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[7]) {
 			Object[] r = {"연유라떼 (HOT)","1","3000"};
 			model.addRow(r);
@@ -297,11 +272,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[8]) {
 			Object[] r = {"아인슈패너 (ICE)","1","3000"};
 			model.addRow(r);
@@ -309,11 +281,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[9]) {
 			Object[] r = {"콜드브루 (ICE)","1","2500"};
 			model.addRow(r);
@@ -321,11 +290,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[10]) {
 			Object[] r = {"바닐라 라떼(ICE)","1","3000"};
 			model.addRow(r);
@@ -333,11 +299,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[11]) {
 			Object[] r = {"바닐라 라떼(HOT)","1","3000"};
 			model.addRow(r);
@@ -345,11 +308,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[12]) {
 			Object[] r = {"자몽에이드 (ICE)","1","2500"};
 			model.addRow(r);
@@ -357,11 +317,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[13]) {
 			Object[] r = {"레몬에이드 (ICE)","1","2500"};
 			model.addRow(r);
@@ -369,11 +326,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[14]) {
 			Object[] r = {"블루 레몬에이드 (ICE)","1","2800"};
 			model.addRow(r);
@@ -381,11 +335,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == menuBtn[15]) {
 			Object[] r = {"아이스티 (ICE)","1","2000"};
 			model.addRow(r);
@@ -393,11 +344,8 @@ public class PosPage extends JFrame implements ActionListener {
 			many++;
 			lbl6.setText(many + "개");
 			lbl7.setText(sumPrice + "원");
-			lbl8.setText(discount + "원");
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
-			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 		} else if (obj == payBtn[0]) {
 
 			model.setNumRows(0);
@@ -407,10 +355,8 @@ public class PosPage extends JFrame implements ActionListener {
 			finalPrice = 0;
 			lbl7.setText(sumPrice + "원");
 			lbl6.setText("0개");
-			lbl8.setText("0원");
 			lbl9.setText(finalPrice + "원");
-			lbl10.setText(point + "point");
-		} else if (obj == payBtn[1]) {
+		} else if (obj == payBtn[1]) {//선택 취소 버튼
 
 			int n = saleList.getSelectedRow();
 			if (n >= 0) {
@@ -422,12 +368,11 @@ public class PosPage extends JFrame implements ActionListener {
 				finalPrice = sumPrice - discount;
 				lbl9.setText(finalPrice + "원");
 				point = (int) (finalPrice * 0.05);
-				lbl10.setText(point + "point");
 			}
 
-		} else if (obj == payBtn[2]) {
+		} else if (obj == payBtn[2]) {//포스 종료 버튼
 			dispose();
-		} else if (obj == payBtn[3]) {
+		} else if (obj == payBtn[3]) {//결제 완료 버튼
 			if (sumPrice != 0) {
 				
 					
@@ -439,8 +384,6 @@ public class PosPage extends JFrame implements ActionListener {
 						lbl6.setText("0개");
 						finalPrice = sumPrice - discount;
 						lbl9.setText(finalPrice + "원");
-						point = (int) (finalPrice * 0.05);
-						lbl10.setText(point + "point");
 
 						//DB.executeQuery("insert into mint.sales values (sysdate," + finalPrice + ")");
 						int answer = JOptionPane.showConfirmDialog(null, "포인트를 적립하시겠습니까?","포인트 적립",JOptionPane.YES_NO_OPTION);
@@ -452,14 +395,14 @@ public class PosPage extends JFrame implements ActionListener {
 			
 			}
 
-		} else if (obj == payBtn[4]) {
-			ps = new PointSearch();
-		} else if (obj == payBtn[5]) {
+		} else if (obj == payBtn[4]) {//포인트 검색 버튼 ->바꿀껀데 새로운 창이 떠야해
+			
+		} else if (obj == payBtn[5]) {//포인트 사용 버튼
 			
 			pu = new PointUse();
 			pu.use.addActionListener(this);
 				
-			}else if (obj == payBtn[6]) {
+			}else if (obj == payBtn[6]) {//멤버 회원 가입 버튼
 			new MemberSignIn();
 		} else if (obj == payBtn[7]) {
 			new SalesPrice();
@@ -470,7 +413,6 @@ public class PosPage extends JFrame implements ActionListener {
 			finalPrice = sumPrice - discount;
 			lbl9.setText(finalPrice + "원");
 			point = (int) (finalPrice * 0.05);
-			lbl10.setText(point + "point");
 			phone = pu.getPhone();
 		}  else if (obj==puu.use) {
 			phone = puu.getPhone();
@@ -479,35 +421,6 @@ public class PosPage extends JFrame implements ActionListener {
 
 	}
 
-	public void btnSkill() {
-
-		rs = DB.getRs("Select menuname, price from mint.menu where btnnum = " + btnNum);
-
-		try {
-			rs.next();
-			String name = rs.getString("menuname");
-			int price = rs.getInt("price");
-			if (name != null) {
-				Object[] r = { name, "1", price };
-				model.addRow(r);
-				sumPrice = sumPrice + price;
-				many++;
-				lbl6.setText(many + "개");
-				lbl7.setText(sumPrice + "원");
-			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		lbl8.setText(discount + "원");
-		finalPrice = sumPrice - discount;
-		lbl9.setText(finalPrice + "원");
-		point = (int) (finalPrice * 0.05);
-		lbl10.setText(point + "point");
-		
-
-	}
-	
 
 	public void getDate() {
 		Calendar cal = Calendar.getInstance();

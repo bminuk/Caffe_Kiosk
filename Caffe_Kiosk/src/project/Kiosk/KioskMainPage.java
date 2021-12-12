@@ -13,7 +13,9 @@ public class KioskMainPage extends JFrame implements ActionListener{
 	JLabel title= new JLabel("Coffee");//아마 이미지 만들어서 넣는게 더 편할 듯 (추후 이 주석 삭제할 것)
 	static KioskMenuFrame kmf;
 	static KioskOrderFrame kof;
-	static JLabel price = new JLabel("총 결제 금액 : ");
+	JLabel pricelbl = new JLabel("총 결제 금액 : ");
+	static JLabel price = new JLabel("");
+	static int priceSum = 0;
 	JButton takeOutBtn = new JButton("포장");
 	JButton useStoreBtn = new JButton("매장");
 	public KioskMainPage() {
@@ -41,9 +43,13 @@ public class KioskMainPage extends JFrame implements ActionListener{
 		add(kof);
 		
 		//총 결제 금액
+		pricelbl.setSize(200, 50);
+		pricelbl.setLocation(160, 760);
+		add(pricelbl);
 		price.setSize(200, 50);
-		price.setLocation(200, 760);
+		price.setLocation(260, 760);
 		add(price);
+		
 		
 		//매장, 포장 버튼 생성
 		
